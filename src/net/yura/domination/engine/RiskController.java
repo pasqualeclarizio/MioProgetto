@@ -30,7 +30,11 @@ public class RiskController {
     public void addListener(RiskListener o) {
         synchronized(this) {
             if (o == null)
-                throw new NullPointerException();
+            	/*
+            	 * delete throw new NullPointerException();
+            	 */
+                //throw new NullPointerException();
+            	throw new Error();
             if (!obs.contains(o)) {
                 obs.addElement(o);
             }

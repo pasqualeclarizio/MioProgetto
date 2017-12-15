@@ -74,7 +74,7 @@ public class AIManager {
                     default: throw new IllegalStateException("AI error: unknown state "+ game.getState() );
             }
 
-            if (output==null) { throw new NullPointerException("AI ERROR!"); }
+            //if (output==null) { throw new NullPointerException("AI ERROR!"); }
 
             return output;
     }
