@@ -31,8 +31,11 @@ import net.yura.domination.engine.core.Statistic;
  * fear reprisals
  */
 public class AIDomination extends AISubmissive {
-
+	
 	static final int MAX_AI_TURNS = 300;
+	/*
+	 * these are the Costant of Level
+	 */
 	public static final int PLAYER_AI_AVERAGE = 4;
 	public final static int PLAYER_AI_HARD = 2;
 	public final static int PLAYER_AI_EASY = 1;

@@ -52,8 +52,10 @@ public class MapChooser implements ActionListener,MapServerListener {
     //public static final String SERVER_URL="http://domination.sf.net/maps2/maps/";
     //public static final String MAP_PAGE=SERVER_URL+"";
     //public static final String CATEGORIES_PAGE=SERVER_URL+"maps.xml";
-
-    // theos server
+	
+	/*
+	 * these are a Costant Server Url, Map Page and Categories
+	 */
     public static final String SERVER_URL="http://maps.yura.net/";
     public static final String MAP_PAGE=SERVER_URL+"maps?format=xml&version="+Url.encode( RiskUtil.RISK_VERSION );
     public static final String CATEGORIES_PAGE=SERVER_URL+"categories?format=xml&version="+Url.encode( RiskUtil.RISK_VERSION );

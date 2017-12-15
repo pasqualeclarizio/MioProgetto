@@ -14,6 +14,9 @@ public class BallWorld implements Runnable {
 
         int[] box = new int[2];
         MapPanel panel;
+        /*
+         * this is array of Balls
+         */
         public Ball[] balls;
         boolean running;
 

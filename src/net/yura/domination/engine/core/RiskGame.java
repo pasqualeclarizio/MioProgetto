@@ -33,6 +33,9 @@ import net.yura.domination.engine.translation.TranslationBundle;
 public class RiskGame implements Serializable { // transient
 
 	private static final long serialVersionUID = 8L;
+	/*
+	 * these are a costant 
+	 */
 	public final static String SAVE_VERSION = String.valueOf(serialVersionUID);
 
 	public final static String NETWORK_VERSION = "12";

@@ -1,9 +1,18 @@
 package collisionphysics;
 
 public class Ball {
-   public float x, y;           // Ball's center x and y (package access)
-   float speedX, speedY; // Ball's speed per step in x and y (package access)
-   public float radius;         // Ball's radius (package access)
+	/*
+	 * Center of ball x and y (Package)
+	 */
+   public float x, y;
+   /*
+    * Speed of Ball in x and y
+    */
+   float speedX, speedY;
+   /*
+    * Radios of Ball (Package)
+    */
+   public float radius;
    
    // For collision detection and response
    // Maintain the response of the earliest collision detected 

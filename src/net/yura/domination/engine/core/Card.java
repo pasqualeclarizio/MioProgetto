@@ -12,7 +12,9 @@ import java.io.Serializable;
 public class Card implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	/*
+	 * these are a Costant of different String
+	 */
     public final static String CAVALRY = "Cavalry";
     public final static String INFANTRY = "Infantry";
     public final static String CANNON = "Cannon";

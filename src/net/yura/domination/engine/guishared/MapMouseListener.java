@@ -7,7 +7,9 @@ import net.yura.domination.engine.core.RiskGame;
  * @author Yura Mamyrin
  */
 public class MapMouseListener {
-
+	/*
+	 * this is a Costant NO COUNTRY
+	 */
     public final static int NO_COUNTRY = 255;
 
     private Risk myrisk;

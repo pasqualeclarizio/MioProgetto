@@ -9,7 +9,9 @@ import java.util.Map;
  * @author Yura Mamyrin
  */
 public class ColorUtil {
-
+	/*
+	 * these are a Costant of Color
+	 */
         public static final int BLACK       = 0xFF000000,
                                 WHITE       = 0xFFFFFFFF,
                                 LIGHT_GRAY  = 0xFFC0C0C0,
