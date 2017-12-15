@@ -90,6 +90,7 @@ public class Service {
     BufferedReader reader = new BufferedReader(input);
 
     String line = reader.readLine();
+    // try and catch
     while (line != null) {
       try {
         // First strip any comment...
@@ -106,7 +107,7 @@ public class Service {
         }
       } catch (Exception ex) {
         // this means a name in the file can not be found as a class
-        ex.printStackTrace();
+        //ex.printStackTrace();
         // Just try the next line
       }
       line = reader.readLine();
@@ -125,9 +126,9 @@ public class Service {
         // stick it into our vector...
         providers.add(obj);
       } catch (InstantiationException e) {
-        e.printStackTrace();
+        //e.printStackTrace();
       } catch (IllegalAccessException e) {
-        e.printStackTrace();
+        //e.printStackTrace();
       }
       //Logger.debug("Service: loaded "+ obj.getClass().getName());
     }

@@ -424,7 +424,7 @@ public class RiskUtil {
                 }
                 catch(IOException ex) {
                         System.err.println("Error trying to load: "+fileName);
-                        RiskUtil.printStackTrace(ex);
+                        //RiskUtil.printStackTrace(ex);
                         if (c < 5) { // retry
                                 try { Thread.sleep(1000); } catch(Exception ex2) { }
                         }

@@ -407,6 +407,19 @@ public class Risk extends Thread {
             else if (input.equals("replay")) {
                 if ( StringT.hasMoreTokens()==false ) {
                     if ( unlimitedLocalMode ) {
+                    	/*
+                    	 * try not use
+                    	 */
+                    	List replayCommands = game.getCommands();
+                        saveGameToUndoObject();
+                        game = new RiskGame();
+                        replay = true;
+                        for (Iterator e = replayCommands.iterator(); e.hasNext();) {
+                            inGameParser( (String)e.next() );
+                        }
+                        replay = false;
+                        output="replay of game finished";
+                    	/*
                         try {
                             List replayCommands = game.getCommands();
                             saveGameToUndoObject();
@@ -424,6 +437,7 @@ public class Risk extends Thread {
                             output="error with replay "+e;
                             RiskUtil.printStackTrace(e);
                         }
+                        */
                     }
                     else {
                         output="can only replay local games";
@@ -459,37 +473,20 @@ public class Risk extends Thread {
         String output;
 
         controller.sendMessage(">" + message, false, false );
-
-        // NEW GAME
         if (input.equals("newgame")) {
 
             if (StringT.hasMoreTokens()==false) {
-
-                // already checked
-                //if (game == null) {
-
-                try {
-
-                    // CREATE A GAME
-                    game = new RiskGame();
-
-                    // NO SERVER OR CLIENT IS STARTED
-
-                    unlimitedLocalMode = true;
-
-                    controller.newGame(true);
-                    setupPreviews( doesMapHaveMission() );
-
-                    output=resb.getString( "core.newgame.created");
-                }
-                catch (Exception e) {
-                    RiskUtil.printStackTrace(e);
-                    output=resb.getString( "core.newgame.error") + " " + e.toString();
-                }
-                //}
-                //else {
-                //	output=resb.getString( "core.newgame.alreadyloaded");
-                //}
+            	try {
+            		game = new RiskGame();
+            		unlimitedLocalMode = true;
+            		controller.newGame(true);
+            		setupPreviews( doesMapHaveMission() );
+            		output=resb.getString( "core.newgame.created");
+            	}
+            	catch (Exception e) {
+            		//RiskUtil.printStackTrace(e);
+            		output=resb.getString( "core.newgame.error") + " " + e.toString();
+            	}
             }
             else { output=RiskUtil.replaceAll(resb.getString( "core.error.syntax"), "{0}", "newgame"); }
 
@@ -1037,13 +1034,16 @@ public class Risk extends Thread {
             String newName = (String)map.get("newName");
             String newAddress = (String)map.get("newAddress");
             int newType = Integer.parseInt((String)map.get("newType"));
-
+            
+            renamePlayer(oldName,newName,newAddress,newType);
+            /*
             try {
                 renamePlayer(oldName,newName,newAddress,newType);
             }
             catch (Exception ex) {
                 ex.printStackTrace();
             }
+            */
         }
         else { // parse this normal cammand
 
@@ -1294,7 +1294,9 @@ public class Risk extends Thread {
                             if ( newgame_type!=-1 && newgame_cardType!=-1 && n>=2 && n<=RiskGame.MAX_PLAYERS) {
 
                                 autoplaceall = newgame_autoplaceall;
-
+                                
+                                game.startGame(newgame_type,newgame_cardType,newgame_recycle,threeDice);
+                                /*
                                 try {
 
                                     game.startGame(newgame_type,newgame_cardType,newgame_recycle,threeDice);
@@ -1305,6 +1307,7 @@ public class Risk extends Thread {
                                     RiskUtil.printStackTrace(e);
 
                                 }
+                                */
 
                             }
 
@@ -1409,35 +1412,41 @@ public class Risk extends Thread {
                                     bufferin=in;
 
                                 }
-
+                                
                                 public void run() {
-
-                                    try {
-
+                                	// try and catch
                                         String input = bufferin.readLine();
                                         while(input != null) {
-
                                             //System.out.print(input+"\n");
-
                                             risk.inGameParser(input);
                                             input = bufferin.readLine();
-
                                         }
-
                                         bufferin.close();
-
-                                    }
-                                    catch(Exception error) {
-
-                                        RiskUtil.printStackTrace(error);
-
-                                    }
-
                                     //set replay off
                                     replay = false;
                                     getInput();
                                 }
-
+                                
+                                /* try and catch
+                                public void run1() {
+                                	// try and catch
+                                    try {
+                                        String input = bufferin.readLine();
+                                        while(input != null) {
+                                            //System.out.print(input+"\n");
+                                            risk.inGameParser(input);
+                                            input = bufferin.readLine();
+                                        }
+                                        bufferin.close();
+                                    }
+                                    catch(Exception error) {
+                                        RiskUtil.printStackTrace(error);
+                                    }
+                                    //set replay off
+                                    replay = false;
+                                    getInput();
+                                }
+                                */
                             }
 
                             Thread replaythread = new Replay(this, bufferin);
